@@ -1,17 +1,17 @@
 <?php
 
+define ('DIRSEP', DIRECTORY_SEPARATOR);
+
 ## DOCUMENT_ROOT
 
+// Узнаём путь до файлов сайта
+
 if (!defined('DOCUMENT_ROOT')) {
-	if (!empty($_SERVER["DOCUMENT_ROOT"])) {
-		define ('DOCUMENT_ROOT', $_SERVER["DOCUMENT_ROOT"]);
-	} else {
-		$str = str_replace ('/root/environments.php','/',__FILE__);
-		define ('DOCUMENT_ROOT', $str);
-	}
+	$str = realpath(dirname(__FILE__) . DIRSEP . '..' . DIRSEP) . DIRSEP;
+	define ('DOCUMENT_ROOT', $str);
 }
 
 ## TWIG
 
-define('TWIG_TEMPLATES', DOCUMENT_ROOT . 'views/twig');
+define('TWIG_TEMPLATES', DOCUMENT_ROOT . 'views/{theme}/twig');
 define('TWIG_CACHE', DOCUMENT_ROOT . 'cache/twig_compilations/');

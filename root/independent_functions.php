@@ -43,3 +43,7 @@ function stripTextByWords($in, $words = 100) {
 function quotefix($string){
    return str_replace("\"","&quot;",$string);
 }
+
+function show_gen_time() {
+	return (microtime() - GENERATION_START_TIME);
+}

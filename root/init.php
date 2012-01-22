@@ -1,13 +1,28 @@
 <?php
 
+if (version_compare(phpversion(), '5.1.0', '<') == true) { die ('PHP5.1 min'); }
+
+session_start();
+
+## start counting time of generation page
+define('GENERATION_START_TIME', microtime());
+
+#####################
+##### including #####
+#####################
+
 ## independent functions
 require_once 'independent_functions.php';
 
-## including
+## including environemtns
 require_once 'environments.php';
 require_once 'db.php';
+require_once 'classes/qbe.php';
 
-## twig
+######################
+######## twig ########
+######################
+
 require_once DOCUMENT_ROOT . 'libs/Twig/Autoloader.php';
 
 global $twigStr, $twig;
@@ -17,7 +32,12 @@ Twig_Autoloader::register();
 $loaderString = new Twig_Loader_String();
 $twigStr = new Twig_Environment($loaderString);
 
-$loaderFiles = new Twig_Loader_Filesystem(TWIG_TEMPLATES);
-$twig = new Twig_Environment($loader, array(
-  'cache' => TWIG_CACHE,
+if (!defined('THEME')) { define('THEME', 'default'); }
+
+$loaderFiles = new Twig_Loader_Filesystem(str_replace('{theme}',THEME,TWIG_TEMPLATES));
+$twig = new Twig_Environment($loaderFiles, array(
+ 'cache' => TWIG_CACHE,
 ));
+
+## model-controller
+require_once 'mc.php';
