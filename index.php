@@ -10,6 +10,8 @@ if (isset($_GET['logout'])) {
 	$USER->LogOut();
 }
 
+$m = new QBE_Builder();
+
 if (!$USER->IsAuth()) {
 	$authMessage = '';
 	if (isset($_POST['USER_AUTH'],$_POST['USER_LOGIN'],$_POST['USER_PASSWORD']) &&

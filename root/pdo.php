@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('MYSQL_DESABLE')) {
+if (!defined('MYSQL_DISABLE')) {
 
 global $db;
 

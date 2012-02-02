@@ -1,6 +1,6 @@
 <?php
 
-if (version_compare(phpversion(), '5.1.0', '<') == true) { die ('PHP5.1 min'); }
+if (version_compare(phpversion(), '5.2.0', '<') == true) { die ('PHP5.2 min'); }
 
 session_start();
 
@@ -17,6 +17,8 @@ require_once 'independent_functions.php';
 ## including environemtns
 require_once 'environments.php';
 require_once 'db.php';
+require_once 'classes/date.php';
+require_once 'classes/file.php';
 require_once 'classes/qbe.php';
 
 ######################
