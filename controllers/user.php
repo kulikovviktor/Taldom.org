@@ -53,6 +53,4 @@ class ControllerUser extends ModelUser {
 	
 }
 
-global $USER;
-
-$USER = new ControllerUser();
+Registry::Set('USER', new ControllerUser());

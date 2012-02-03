@@ -41,13 +41,11 @@ class MC {
 	
 }
 
-global $mc;
-
-$mc = new MC();
+Registry::Set('MC', new MC());
 
 ## DEFAULT including
 
-$mc->inc(array(
+Registry::Get('MC')->inc(array(
 	'models' => array(
 		'user'
 	),

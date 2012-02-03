@@ -22,9 +22,8 @@ class ModelUser extends QBE {
 	
 	public function add($arrInsert) {
 		if (is_array($arrInsert) && !empty($arrInsert)) {
-			global $db;
 			$arSql = parent::insert($arrInsert); 
-			$STH = $db->prepare("INSERT INTO ".$this::TABLE." (".$arSql['names'].") VALUES (".$arSql['values'].")");  
+			$STH = Registry::Get('DB')->prepare("INSERT INTO ".$this::TABLE." (".$arSql['names'].") VALUES (".$arSql['values'].")");  
 			$STH->execute($arrInsert);  
 			return $db->lastInsertId();
 		}
@@ -35,8 +34,7 @@ class ModelUser extends QBE {
 	public function GetByLogin($login) {
 		$login = trim($login);
 		if (strlen($login) > 0) {
-			global $db;
-			$STH = $db->query("SELECT * FROM ".$this::TABLE." WHERE `login`='".$login."' LIMIT 1"); 
+			$STH = Registry::Get('DB')->query("SELECT * FROM ".$this::TABLE." WHERE `login`='".$login."' LIMIT 1"); 
 			if ($obj = $STH->fetch()) {  
 				return $obj;
 			} else {
@@ -51,8 +49,7 @@ class ModelUser extends QBE {
 	public function GetByEmail($email) {
 		$email = trim($email);
 		if (strlen($email) > 0) {
-			global $db;
-			$STH = $db->query("SELECT * FROM ".$this::TABLE." WHERE `email`='".$email."' LIMIT 1"); 
+			$STH = Registry::Get('DB')->query("SELECT * FROM ".$this::TABLE." WHERE `email`='".$email."' LIMIT 1"); 
 			if ($obj = $STH->fetch()) {  
 				return $obj;
 			} else {
@@ -70,8 +67,7 @@ class ModelUser extends QBE {
 		$login = trim($login);
 		$password = trim($password);
 		if (strlen($login) > 0 && strlen($password) > 0) {
-			global $db;
-			$STH = $db->query("SELECT * FROM ".$this::TABLE." 
+			$STH = Registry::Get('DB')->query("SELECT * FROM ".$this::TABLE." 
 								WHERE `login`='".$login."' AND `password`='".$password."' LIMIT 1"); 
 			if ($obj = $STH->fetch()) {  
 				return $obj;

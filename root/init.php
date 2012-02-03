@@ -16,6 +16,7 @@ require_once 'independent_functions.php';
 
 ## including environemtns
 require_once 'environments.php';
+require_once 'registry.php';
 require_once 'db.php';
 require_once 'classes/date.php';
 require_once 'classes/file.php';
@@ -29,21 +30,19 @@ if (!defined('TWIG_DISABLED')) {
 
 require_once DOCUMENT_ROOT . 'libs/Twig/Autoloader.php';
 
-global $twigStr, $twig;
-
 Twig_Autoloader::register();
 
-$loaderString = new Twig_Loader_String();
 if (defined('TWIG_STRING_ENABLED')) {
-	$twigStr = new Twig_Environment($loaderString);
+	$loaderString = new Twig_Loader_String();
+	Registry::Set('TWIG_STRING', new Twig_Environment($loaderString));
 }
 
 if (!defined('THEME')) { define('THEME', 'default'); }
 
 $loaderFiles = new Twig_Loader_Filesystem(str_replace('{theme}',THEME,TWIG_TEMPLATES));
-$twig = new Twig_Environment($loaderFiles, array(
+Registry::Set('TWIG', new Twig_Environment($loaderFiles, array(
  'cache' => TWIG_CACHE,
-));
+)));
 
 }
 
