@@ -18,7 +18,7 @@ function DebugMessage($message, $title = false, $color = "#008B8B") {
 function debug($message, $title = false, $color = "#008B8B") { DebugMessage ($message, $title, $color); }
 function __d($message, $title = false, $color = "#008B8B") { DebugMessage ($message, $title, $color); }
 
-function pre($array = false, $vardump = false, $description = false, $debug_print_trace = false) {
+function pre($array = false, $description = false, $debug_print_trace = false, $vardump = false) {
 	
 	$debug_trace = debug_backtrace();
 	if($debug_print_trace){
@@ -48,7 +48,7 @@ function pre($array = false, $vardump = false, $description = false, $debug_prin
 }
 
 function pre_vd($array = false, $description = false, $debug_print_trace = false) {
-	pre($array,true,$description,$debug_print_trace);
+	pre($array,$description,$debug_print_trace,true);
 }
 
 ## string functions
