@@ -25,6 +25,8 @@ require_once 'classes/qbe.php';
 ######## twig ########
 ######################
 
+if (!defined('TWIG_DISABLED')) {
+
 require_once DOCUMENT_ROOT . 'libs/Twig/Autoloader.php';
 
 global $twigStr, $twig;
@@ -32,7 +34,9 @@ global $twigStr, $twig;
 Twig_Autoloader::register();
 
 $loaderString = new Twig_Loader_String();
-$twigStr = new Twig_Environment($loaderString);
+if (defined('TWIG_STRING_ENABLED')) {
+	$twigStr = new Twig_Environment($loaderString);
+}
 
 if (!defined('THEME')) { define('THEME', 'default'); }
 
@@ -40,6 +44,8 @@ $loaderFiles = new Twig_Loader_Filesystem(str_replace('{theme}',THEME,TWIG_TEMPL
 $twig = new Twig_Environment($loaderFiles, array(
  'cache' => TWIG_CACHE,
 ));
+
+}
 
 ## model-controller
 require_once 'mc.php';

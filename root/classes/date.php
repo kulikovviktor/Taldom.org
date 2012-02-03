@@ -2,12 +2,6 @@
 
 class CDate {
 	
-	function __construct() {}
+	// body class
 	
 }
-
-## init
-
-global $date;
-
-$date = new CDate();
