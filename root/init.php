@@ -17,6 +17,7 @@ require_once 'independent_functions.php';
 ## including environemtns
 require_once 'environments.php';
 require_once 'registry.php';
+require_once 'classes/valid.php';
 require_once 'db.php';
 require_once 'classes/date.php';
 require_once 'classes/file.php';

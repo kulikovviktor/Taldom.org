@@ -10,6 +10,10 @@ if (isset($_GET['logout'])) {
 	Registry::Get('USER')->LogOut();
 }
 
+if (Validator::IsMobile()) {
+	print "MobilePhone";
+}
+
 if (!Registry::Get('USER')->IsAuth()) {
 	$authMessage = '';
 	if (isset($_POST['USER_AUTH'],$_POST['USER_LOGIN'],$_POST['USER_PASSWORD']) &&

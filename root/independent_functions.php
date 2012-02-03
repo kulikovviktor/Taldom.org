@@ -18,6 +18,39 @@ function DebugMessage($message, $title = false, $color = "#008B8B") {
 function debug($message, $title = false, $color = "#008B8B") { DebugMessage ($message, $title, $color); }
 function __d($message, $title = false, $color = "#008B8B") { DebugMessage ($message, $title, $color); }
 
+function pre($array = false, $vardump = false, $description = false, $debug_print_trace = false) {
+	
+	$debug_trace = debug_backtrace();
+	if($debug_print_trace){
+		foreach(debug_backtrace() as $k=>$v){
+	        if($v['function'] == "include" || $v['function'] == "include_once" || $v['function'] == "require_once" || $v['function'] == "require"){
+	            $backtracel .= "#".$k." ".$v['function']."(".$v['args'][0].") called at [".$v['file'].":".$v['line']."]<br />";
+	        }else{
+	            $backtracel .= "#".$k." ".$v['function']."() called at [".$v['file'].":".$v['line']."]<br />";
+	        }
+	    } 
+	    echo "<br /><b>".$backtracel."</b><br />";
+    }
+    else {
+    	print( "<br /><b>".$debug_trace[0]["file"].": ".$debug_trace[0]["line"]."</b><br />");
+    }
+     if($description)
+    	echo "<b>".$description."</b><br />";
+	echo "<pre>";
+	if ($vardump) {
+		var_dump($array);
+	} else {
+		print_r($array);
+	}
+	echo "</pre>";
+	return true;
+	
+}
+
+function pre_vd($array = false, $description = false, $debug_print_trace = false) {
+	pre($array,true,$description,$debug_print_trace);
+}
+
 ## string functions
 
 function stripTextByWords($in, $words = 100) {
