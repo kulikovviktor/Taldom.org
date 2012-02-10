@@ -15,13 +15,15 @@ define('GENERATION_START_TIME', microtime());
 require_once 'independent_functions.php';
 
 ## including environemtns
-require_once 'environments.php';
-require_once 'registry.php';
-require_once 'classes/valid.php';
+require_once 'env/environments.php';
+require_once 'env/registry.php';
 require_once 'db.php';
+
+## classes 
+require_once 'classes/valid.php';
 require_once 'classes/date.php';
-require_once 'classes/file.php';
 require_once 'classes/qbe.php';
+require_once 'classes/file.php';
 
 ######################
 ######## twig ########
@@ -48,4 +50,4 @@ Registry::Set('TWIG', new Twig_Environment($loaderFiles, array(
 }
 
 ## model-controller
-require_once 'mc.php';
+require_once 'env/mc.php';

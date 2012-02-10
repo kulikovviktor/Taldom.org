@@ -3,7 +3,7 @@
 include_once('root/init.php');
 
 if (isset($_GET['reg'])) {
-	$ind = Registry::Get('USER')->AddNewUser('test','53b0b511','vk@headhub.ru', true, false);
+	$ind = Registry::Get('USER')->AddNewUser('tesdt','53b0b511','vdk@headhub.ru', true, false);
 }
 
 if (isset($_GET['logout'])) {
@@ -13,6 +13,17 @@ if (isset($_GET['logout'])) {
 if (Validator::IsMobile()) {
 	print "MobilePhone";
 }
+if (isset($_GET['addfile'])) {
+	$ID_FILE = CFile::Add(array(
+		'createt_at' => date('Y-m-d H:i:s'),
+		'description' => 'Just a test description file'
+	));
+	
+	pre($ID_FILE);
+
+	pre(CFile::GetByID($ID_FILE));
+}
+
 
 if (!Registry::Get('USER')->IsAuth()) {
 	$authMessage = '';

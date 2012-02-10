@@ -25,7 +25,7 @@ class ModelUser extends QBE {
 			$arSql = parent::insert($arrInsert); 
 			$STH = Registry::Get('DB')->prepare("INSERT INTO ".$this::TABLE." (".$arSql['names'].") VALUES (".$arSql['values'].")");  
 			$STH->execute($arrInsert);  
-			return $db->lastInsertId();
+			return Registry::Get('DB')->lastInsertId();
 		}
 	}
 	

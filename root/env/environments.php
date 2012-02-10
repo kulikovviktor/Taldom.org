@@ -7,7 +7,7 @@ define ('DIRSEP', DIRECTORY_SEPARATOR);
 // Узнаём путь до файлов сайта
 
 if (!defined('DOCUMENT_ROOT')) {
-	$str = realpath(dirname(__FILE__) . DIRSEP . '..' . DIRSEP) . DIRSEP;
+	$str = realpath(dirname(__FILE__) . DIRSEP . '../..' . DIRSEP) . DIRSEP;
 	define ('DOCUMENT_ROOT', $str);
 }
 
