@@ -31,7 +31,7 @@ require_once 'classes/file.php';
 
 if (!defined('TWIG_DISABLED')) {
 
-require_once DOCUMENT_ROOT . 'libs/Twig/Autoloader.php';
+require_once DOCUMENT_ROOT . '/libs/Twig/lib/Twig/Autoloader.php';
 
 Twig_Autoloader::register();
 
