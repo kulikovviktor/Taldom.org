@@ -1,8 +1,12 @@
 <?php
 
-class imageworx {
+class ImageWorx {
+
+	public function __construct() {}
+
+	public function test() {return 'is work';}
 	
-	static function resampled($src, $dest, $width_f, $height_f, $rgb = 0xFFFFFF, $quality = 90) {  
+	public function resampled($src, $dest, $width_f, $height_f, $rgb = 0xFFFFFF, $quality = 90) {  
 	    if (!file_exists($src)) {  
 	        return false; 
 	    }   

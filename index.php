@@ -24,6 +24,10 @@ if (isset($_GET['addfile'])) {
 	pre(CFile::GetByID($ID_FILE));
 }
 
+/*
+$new = new ImageWorx();
+print $new->test();
+*/
 
 if (!Registry::Get('USER')->IsAuth()) {
 	$authMessage = '';
