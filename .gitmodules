@@ -4,3 +4,6 @@
 [submodule "libs/Twig"]
 	path = libs/Twig
 	url = git://github.com/fabpot/Twig.git
+[submodule "assets/libs/html5shiv"]
+	path = assets/libs/html5shiv
+	url = git://github.com/aFarkas/html5shiv.git
