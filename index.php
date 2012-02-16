@@ -40,15 +40,31 @@ if (!Registry::Get('USER')->IsAuth()) {
 			$authMessage = 'Ошибка авторизации! Неверные логин и/или пароль!';
 		}
 	}
-	$view['auth_form'] = Registry::Get('TWIG')->render('auth_form.html',array('message'=>$authMessage));
+	if (!defined('CONFIG_USE_STANDART_VIEW') && CONFIG_USE_STANDART_VIEW !== false) {
+		$view['auth_form'] = Registry::Get('TWIG')->render('auth_form.html',array('message'=>$authMessage));
+	} else {
+		$view['auth_form'] = Registry::Get('VIEW')->clear()->set('message',$authMessage)->return_display('auth_form.tpl');
+	}
 } else {
 	$view['auth_form'] = 'Добро пожаловать, <strong>'.$_SESSION['AUTH']['LOGIN'].'</strong>';
 }
 
 $show = $view['auth_form'];
+	
+if (!defined('CONFIG_USE_STANDART_VIEW') && CONFIG_USE_STANDART_VIEW !== false) {
 
-echo Registry::Get('TWIG')->render('main.html', array(
-	'content' => $show,
-	'gentime' => show_gen_time(),
-	'title' => 'Тестовая разработка'
-));
+	echo Registry::Get('TWIG')->render('main.html', array(
+		'content' => $show,
+		'gentime' => show_gen_time(),
+		'title' => 'TWIG: Тестовая разработка'
+	));
+
+} else {
+
+Registry::Get('VIEW')->clear()
+->set('title', 'NATIVE: Тестовая разработка')
+->set('content', $show)
+->set('gentime', show_gen_time())
+->display('index.tpl');
+
+}

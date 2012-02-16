@@ -15,3 +15,7 @@ if (!defined('DOCUMENT_ROOT')) {
 
 define('TWIG_TEMPLATES', DOCUMENT_ROOT . 'views/{theme}/twig');
 define('TWIG_CACHE', DOCUMENT_ROOT . 'cache/twig_compilations/');
+
+## VIEW PATH
+
+define('VIEW_TEMPLATES', DOCUMENT_ROOT . 'views/{theme}/php/');

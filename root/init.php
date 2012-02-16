@@ -11,6 +11,8 @@ define('GENERATION_START_TIME', microtime());
 ##### including #####
 #####################
 
+require_once 'init_config.php';
+
 ## independent functions
 require_once 'independent_functions.php';
 
@@ -28,6 +30,22 @@ require_once 'classes/system/date.php';
 require_once 'classes/system/qbe.php';
 require_once 'classes/system/file.php';
 
+## VIEWS Engines
+
+if (!defined('THEME')) { define('THEME', 'default'); }
+
+if (defined('CONFIG_USE_STANDART_VIEW') && CONFIG_USE_STANDART_VIEW == true) {
+
+########################
+######## native ########
+########################
+
+require_once 'classes/system/view.php';
+
+Registry::Set('VIEW', new VIEW_View(str_replace('{theme}',THEME,VIEW_TEMPLATES)));
+
+} else {
+
 ######################
 ######## twig ########
 ######################
@@ -43,12 +61,12 @@ if (defined('TWIG_STRING_ENABLED')) {
 	Registry::Set('TWIG_STRING', new Twig_Environment($loaderString));
 }
 
-if (!defined('THEME')) { define('THEME', 'default'); }
-
 $loaderFiles = new Twig_Loader_Filesystem(str_replace('{theme}',THEME,TWIG_TEMPLATES));
 Registry::Set('TWIG', new Twig_Environment($loaderFiles, array(
  'cache' => TWIG_CACHE,
 )));
+
+}
 
 }
 
