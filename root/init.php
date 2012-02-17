@@ -30,6 +30,11 @@ require_once 'classes/system/date.php';
 require_once 'classes/system/qbe.php';
 require_once 'classes/system/file.php';
 
+// Redis
+require_once DOCUMENT_ROOT . '/libs/redis/library/Rediska.php';
+
+Registry::Set('REDIS', new Rediska());
+
 ## VIEWS Engines
 
 if (!defined('THEME')) { define('THEME', 'default'); }

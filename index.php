@@ -24,6 +24,24 @@ if (isset($_GET['addfile'])) {
 	pre(CFile::GetByID($ID_FILE));
 }
 
+ob_start();
+
+$key = new Rediska_Key('keyName');
+
+if (!$key->getValue()) {
+	pre('redis write');
+	$text = 'test this';
+	$key->setValue($text);
+	$key->expire(5 * 60);
+	$var = $text;
+} else {
+	$var = $key->getValue($text);
+}
+
+pre ($var);
+
+$textvar = ob_get_clean();
+
 /*
 $new = new ImageWorx();
 print $new->test();
@@ -49,7 +67,7 @@ if (!Registry::Get('USER')->IsAuth()) {
 	$view['auth_form'] = 'Добро пожаловать, <strong>'.$_SESSION['AUTH']['LOGIN'].'</strong>';
 }
 
-$show = $view['auth_form'];
+$show = $view['auth_form'].$textvar;
 	
 if (!defined('CONFIG_USE_STANDART_VIEW') && CONFIG_USE_STANDART_VIEW !== false) {
 

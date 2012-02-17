@@ -7,3 +7,6 @@
 [submodule "assets/libs/html5shiv"]
 	path = assets/libs/html5shiv
 	url = git://github.com/aFarkas/html5shiv.git
+[submodule "libs/redis"]
+	path = libs/redis
+	url = http://github.com/Shumkov/Rediska.git
