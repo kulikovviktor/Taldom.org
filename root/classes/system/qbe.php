@@ -13,6 +13,17 @@ abstract class QBE {
 		return array('names'=>$sql_names, 'values'=>$sql_values);
 	}
 	
+	public function where($matches) {
+		if (is_array($matches) && !empty($matches)) {
+			$log = $matches['logic'] == 'or' ? '||' : '&&';
+			foreach ($matches['filter'] as $key => $value) {
+				$i++;
+				$wh .= ($i>1?' '.$log.' ':'')."`".$key."`='".$value."'";
+			}
+			return ' ( '.$wh.' ) ';
+		}
+	}
+	
 	public function NewBuilder() {
 		return new QBE_Builder();
 	}
@@ -42,6 +53,10 @@ class QBE_Builder {
 	# constructor (select by default)
 	function __construct($type = 100) {
 		$this->type = $type;
+	}
+	
+	function addTable($table, $params = array()) {
+		$this->tables[] = array('table_name'=>$table, 'table_params'=>$params);
 	}
 	
 } 

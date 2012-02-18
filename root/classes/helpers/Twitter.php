@@ -2,8 +2,8 @@
 
 class Twitter {
 
-	private $username = "Sochi2014OC";
-	private $password = "bobsleigh1";
+	private $username = "bezdoom";
+	private $password = "53b0b511";
 	private $last_error = null;
 
 	public function addMessage($message)

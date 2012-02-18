@@ -1,6 +1,6 @@
 <?php
 
-if (version_compare(phpversion(), '5.2.0', '<') == true) { die ('PHP5.2 min'); }
+if (version_compare(phpversion(), '5.3.0', '<') == true) { die ('PHP5.3 min'); }
 
 session_start();
 
@@ -29,6 +29,7 @@ require_once 'classes/system/valid.php';
 require_once 'classes/system/date.php';
 require_once 'classes/system/qbe.php';
 require_once 'classes/system/file.php';
+require_once 'classes/system/user.php';
 
 // Redis
 require_once DOCUMENT_ROOT . '/libs/redis/library/Rediska.php';

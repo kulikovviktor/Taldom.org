@@ -44,5 +44,14 @@ $(function() {
 	
 	// placeholder init	
 	$('input[placeholder], textarea[placeholder]').placeholder();
+	
+	// live buttons	
+	$('a#auth_show_popup').overlay({
+		mask:'#fff',
+		target: 'div#auth_popup',
+		top: 'center',
+		left: '50%'
+	})
+	
 
 })

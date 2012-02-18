@@ -47,9 +47,9 @@ Registry::Set('MC', new MC());
 
 Registry::Get('MC')->inc(array(
 	'models' => array(
-		'user'
+	///	'user'
 	),
 	'controllers' => array(
-		'user'
+	///	'user'
 	)
 ));
