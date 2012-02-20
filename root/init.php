@@ -68,9 +68,14 @@ if (defined('TWIG_STRING_ENABLED')) {
 }
 
 $loaderFiles = new Twig_Loader_Filesystem(str_replace('{theme}',THEME,TWIG_TEMPLATES));
-Registry::Set('TWIG', new Twig_Environment($loaderFiles, array(
- 'cache' => TWIG_CACHE,
-)));
+
+$arTwigSettings = array();
+
+if (!defined('TWIG_DEVELOP_MODE') && TWIG_DEVELOP_MODE !== true) {
+	$arTwigSettings['cache'] = TWIG_CACHE;
+}
+
+Registry::Set('TWIG', new Twig_Environment($loaderFiles, $arTwigSettings));
 
 }
 
