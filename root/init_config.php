@@ -1,4 +1,4 @@
-<?
+<?php
 
 define('TWIG_DEVELOP_MODE', true);
 

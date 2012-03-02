@@ -2,17 +2,19 @@
 
 include_once('root/init.php');
 
-/*
-HelperClasses::inc('Twitter');
-$tw = new Twitter();
-$tw->addMessage("Тестовое сообщение из системы");
-pre($tw->getLastError());
-*/
+Registry::Get('MC')->inc(array(
+	'models' => array(
+		'weather/weather'
+	)
+));
 
-// $show = ( Registry::Get('USER')->CreateUser('1BlackWeb','v4nf77fh','b2ezdoom@foxconn.ru') );
+$weather = new CWeather;
+$weather->get_xml();
 
 echo Registry::Get('TWIG')->render('index/main.html', array(
-	'content' => $show,
+	'content' => '',
 	'gentime' => show_gen_time(),
 	'title' => 'Welcome'
 ));
+
+pre ($weather->extract_forecast()->get_forecast()->attributes());
